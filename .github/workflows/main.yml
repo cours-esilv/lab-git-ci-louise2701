@@ -23,7 +23,7 @@ jobs:
         working-directory: .
 
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: EnricoMi/publish-unit-test-result-action@latest_version
         if: always()
         with:
           files: target/**/*.xml
