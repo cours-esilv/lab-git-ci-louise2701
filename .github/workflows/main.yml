@@ -47,7 +47,8 @@ jobs:
         id: buildx
         with:
           install: true
-          
       - name: Docker build
         run: |
-          docker build .
+         docker build -f lab-git-ci-louise2701/.github/workflows/Dockerfile .
+          
+  
