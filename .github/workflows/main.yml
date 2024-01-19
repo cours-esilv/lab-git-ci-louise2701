@@ -22,11 +22,13 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
 
+     
+      
+      - name: Standard Checkout
+        uses: actions/checkout@v2
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
         working-directory: .
-      - name: Standard Checkout
-        uses: actions/checkout@v2
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
