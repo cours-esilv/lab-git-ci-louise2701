@@ -3,6 +3,13 @@ on:
     branches:
       - main
       - release/*
+
+permissions:
+  contents: read
+  issues: read
+  checks: write
+  pull-requests: write
+
       
 jobs:
   build:
@@ -15,22 +22,11 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
 
-      - name: Standard Checkout
-        uses: actions/checkout@v2
-        with:
-          permissions:
-            contents: read
-            issues: read
-            checks: write
-            pull-requests: write
-
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
         working-directory: .
-
-      - name: Debug GitHub Actions
-        run: |
-          env
+      - name: Standard Checkout
+        uses: actions/checkout@v2
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
@@ -52,4 +48,4 @@ jobs:
           
       - name: Docker build
         run: |
-          docker build -t mon_image:tag .
+          docker build .
